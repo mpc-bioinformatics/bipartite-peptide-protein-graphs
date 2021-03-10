@@ -19,7 +19,7 @@ The different R scripts have to be executed in the numbered order (00 to 05).
 The "Figures_and_Tables_for_Paper" folder contains Code for alle tables and figures 
 of the above mentioned manuscript.
 
-The sata underlying this analysis are available in the ProteomXChange Consortium 
+The data underlying this analysis are available in the ProteomXChange Consortium 
 at  http://proteomecentral.proteomexchange.org via the PRIDE partner repository, 
 and can be accessed with the dataset identifiers PXD000xxx and PXD024305.
 
