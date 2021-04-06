@@ -3,10 +3,10 @@ library(seqinr)    # for reading in fasta files
 library(limma)     # for strsplit2()
 library(pbapply)   # for progress bars for apply functions
 
-source("helper_function/assign_protein_accessions.R")
-source("helper_function/Digest2.R")
-source("helper_function/calculate_biadjacency_matrix_and_submatrices.R")
-source("helper_function/calculate_peptide_ratios.R")
+source("helper_functions/assign_protein_accessions.R")
+source("helper_functions/Digest2.R")
+source("helper_functions/calculate_biadjacency_matrix_and_submatrices.R")
+source("helper_functions/calculate_peptide_ratios.R")
 
 DATA <- read.table("data/D2/D2_quant/peptides.txt", 
                     sep = "\t", 

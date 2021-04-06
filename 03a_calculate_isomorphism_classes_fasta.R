@@ -1,9 +1,9 @@
 library(igraph)    # for functionality regarding (bipartite graphs)
 library(pbapply)   # for progress bars for apply functions
 
-source("helper_function/calculate_biadjacency_matrix_and_submatrices.R")
-source("helper_function/duplicated_for_sparse_matrices.R")
-source("helper_function/isomorph_classes_calculation_and_plotting_functions.R")
+source("helper_functions/calculate_biadjacency_matrix_and_submatrices.R")
+source("helper_functions/duplicated_for_sparse_matrices.R")
+source("helper_functions/isomorph_classes_calculation_and_plotting_functions.R")
 
 
 ################################################################################

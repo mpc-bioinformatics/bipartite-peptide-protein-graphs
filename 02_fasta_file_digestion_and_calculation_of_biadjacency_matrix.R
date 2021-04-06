@@ -3,7 +3,7 @@ library(pbapply)   # for progress bars for apply functions
 library(Matrix)    # for sparse matrices
 library(limma)     # for strsplit2()
 
-source("helper_function/Digest2.R")
+source("helper_functions/Digest2.R")
 
 
 ################################################################################

@@ -2,10 +2,10 @@ library(BBmisc)   # for collapse()
 library(seqinr)   # for reading in fasta files
 library(pbapply)  # for progress bars for apply functions
 
-source("helper_function/assign_protein_accessions.R")
-source("helper_function/Digest2.R")
-source("helper_function/generate_01_matrix_and_submatrices.R")
-source("helper_function/calculate_peptide_ratios.R")
+source("helper_functions/assign_protein_accessions.R")
+source("helper_functions/Digest2.R")
+source("helper_functions/generate_01_matrix_and_submatrices.R")
+source("helper_functions/calculate_peptide_ratios.R")
 
 read.table("data/D1/D1_quant/quantified_peptides-featureFinderCentroided.csv", 
            sep = "\t", header = TRUE, stringsAsFactors = FALSE, skip = 3)

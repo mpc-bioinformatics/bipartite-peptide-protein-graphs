@@ -1,7 +1,7 @@
 library(igraph)
 library(openxlsx)
 
-source("helper_function/isomorph_classes_calculation_and_plotting_functions.R")
+source("helper_functions/isomorph_classes_calculation_and_plotting_functions.R")
 
 ################################################################################
 #### calculate table with characteristics of all graphs ####
