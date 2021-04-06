@@ -97,6 +97,10 @@ Submatrices_full <- readRDS("data/D1/D1_fasta/preprocessed/Submatrix_D1_fasta_mi
 D <- calculate_subgraph_characteristics(Submatrix_merged_Peptides, Submatrices_full)
 write.xlsx(D, "data/D1/D1_fasta/table_subgraph_characteristics_D1_fasta_min7AA.xlsx", keepNa = TRUE)
 
+Submatrix_merged_Peptides <- readRDS("data/D1/D1_fasta/preprocessed/Submatrix_merged_Peptides_D1_fasta_min9AA_fast.rds")
+Submatrices_full <- readRDS("data/D1/D1_fasta/preprocessed/Submatrix_D1_fasta_min9AA.rds")
+D <- calculate_subgraph_characteristics(Submatrix_merged_Peptides, Submatrices_full)
+write.xlsx(D, "data/D1/D1_fasta/table_subgraph_characteristics_D1_fasta_min9AA.xlsx", keepNa = TRUE)
 
 #################################################################################
 #### D2_fasta ####
@@ -116,7 +120,10 @@ Submatrices_full <- readRDS("data/D2/D2_fasta/preprocessed/Submatrix_D2_fasta_mi
 D <- calculate_subgraph_characteristics(Submatrix_merged_Peptides, Submatrices_full)
 write.xlsx(D, "data/D2/D2_fasta/table_subgraph_characteristics_D2_fasta_min7AA.xlsx", keepNa = TRUE)
 
-
+Submatrix_merged_Peptides <- readRDS("data/D2/D2_fasta/preprocessed/Submatrix_merged_Peptides_D2_fasta_min9AA_fast.rds")
+Submatrices_full <- readRDS("data/D2/D2_fasta/preprocessed/Submatrix_D2_fasta_min9AA.rds")
+D <- calculate_subgraph_characteristics(Submatrix_merged_Peptides, Submatrices_full)
+write.xlsx(D, "data/D2/D2_fasta/table_subgraph_characteristics_D2_fasta_min9AA.xlsx", keepNa = TRUE)
 
 
 

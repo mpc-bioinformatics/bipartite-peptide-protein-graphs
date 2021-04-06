@@ -124,6 +124,42 @@ isomorph <- calculateIsomorphList(Submatrix_merged_Peptides)
 save(isomorph, file = "data/D1/D1_fasta/isomorph_classes/isomorph_classes_merged_Peptides_D1_fasta_min7AA_fast.RData")
 
 
+################################################################################
+#### D1_fasta_min9AA
+
+matrix_01 <- readRDS("data/D1/D1_fasta/preprocessed/01_matrix_based_on_complete_fasta_D1_fasta.rds")
+
+ind <- which(nchar(rownames(matrix_01)) < 9)
+matrix_01 <- matrix_01[-ind,]
+ind2 <- which(colSums(matrix_01) == 0)  # proteins that do not have peptides anymore
+matrix_01 <- matrix_01[,-ind2]
+saveRDS(matrix_01, "data/D1/D1_fasta/preprocessed/01_matrix_D1_fasta_min9AA.rds")
+
+G <- igraph::graph_from_incidence_matrix(matrix_01) # calculate complete bipartite graph
+subgraphs <- igraph::decompose(G)                   # calculate connected components        
+
+### back to sub-adjacency matrices
+Submatrix <- pblapply(subgraphs, as_incidence_matrix, sparse = TRUE)
+Submatrix <- pblapply(Submatrix, as, "dgCMatrix")
+
+saveRDS(Submatrix, file = "data/D1/D1_fasta/preprocessed/Submatrix_D1_fasta_min9AA.rds")
+saveRDS(subgraphs, file = "data/D1/D1_fasta/preprocessed/Subgraphs_D1_fasta_min9AA.rds")
+
+
+#### collapse protein nodes:
+S <- readRDS("data/D1/D1_fasta/preprocessed/Submatrix_D1_fasta_min9AA.rds")
+S_proteingroups <- form_proteingroups(S, sparse = TRUE, fast = FALSE)
+saveRDS(S_proteingroups, file = "data/D1/D1_fasta/preprocessed/Submatrix_proteingroups_D1_fasta_min9AA.rds")
+
+#### collapse peptide nodes
+S <- readRDS("data/D1/D1_fasta/preprocessed/Submatrix_proteingroups_D1_fasta_min9AA.rds")
+Submatrix_merged_Peptides <- merge_Peptides(S, sparse = TRUE, fc = FALSE, fast = TRUE)
+saveRDS(Submatrix_merged_Peptides, file = "data/D1/D1_fasta/preprocessed/Submatrix_merged_Peptides_D1_fasta_min9AA_fast.rds")
+
+#### calculate isomorphism classes
+Submatrix_merged_Peptides <- readRDS("data/D1/D1_fasta/preprocessed/Submatrix_merged_Peptides_D1_fasta_min9AA_fast.rds")
+isomorph <- calculateIsomorphList(Submatrix_merged_Peptides) 
+save(isomorph, file = "data/D1/D1_fasta/isomorph_classes/isomorph_classes_merged_Peptides_D1_fasta_min9AA_fast.RData")
 
 
 ################################################################################
@@ -242,7 +278,42 @@ save(isomorph, file = "data/D2/D2_fasta/isomorph_classes/isomorph_classes_merged
 
 
 
+################################################################################
+#### D2_fasta_min9AA
 
+matrix_01 <- readRDS("data/D2/D2_fasta/preprocessed/01_matrix_based_on_complete_fasta_D2_fasta.rds")
+
+ind <- which(nchar(rownames(matrix_01)) < 9)
+matrix_01 <- matrix_01[-ind,]
+ind2 <- which(colSums(matrix_01) == 0)
+matrix_01 <- matrix_01[,-ind2]
+saveRDS(matrix_01, "data/D2/D2_fasta/preprocessed/01_matrix_D2_fasta_min9AA.rds")
+
+G <- igraph::graph_from_incidence_matrix(matrix_01) # calculate complete bipartite graph
+subgraphs <- igraph::decompose(G)                   # calculate connected components        
+
+### back to sub-adjacency matrices
+Submatrix <- pblapply(subgraphs, as_incidence_matrix, sparse = TRUE)
+Submatrix <- pblapply(Submatrix, as, "dgCMatrix")
+
+saveRDS(Submatrix, file = "data/D2/D2_fasta/preprocessed/Submatrix_D2_fasta_min9AA.rds")
+saveRDS(subgraphs, file = "data/D2/D2_fasta/preprocessed/Subgraphs_D2_fasta_min9AA.rds")
+
+
+#### collapse protein nodes:
+S <- readRDS("data/D2/D2_fasta/preprocessed/Submatrix_D2_fasta_min9AA.rds")
+S_proteingroups <- form_proteingroups(S, sparse = TRUE, fast = TRUE)
+saveRDS(S_proteingroups, file = "data/D2/D2_fasta/preprocessed/Submatrix_proteingroups_D2_fasta_min9AA_fast.rds")
+
+#### collapse peptide nodes
+S <- readRDS("data/D2/D2_fasta/preprocessed/Submatrix_proteingroups_D2_fasta_min9AA_fast.rds")
+Submatrix_merged_Peptides <- merge_Peptides(S, sparse = TRUE, fc = FALSE, fast = TRUE)
+saveRDS(Submatrix_merged_Peptides, file = "data/D2/D2_fasta/preprocessed/Submatrix_merged_Peptides_D2_fasta_min9AA_fast.rds")
+
+#### calculate isomorphism classes
+Submatrix_merged_Peptides <- readRDS("data/D2/D2_fasta/preprocessed/Submatrix_merged_Peptides_D2_fasta_min9AA_fast.rds")
+isomorph <- calculateIsomorphList(Submatrix_merged_Peptides) 
+save(isomorph, file = "data/D2/D2_fasta/isomorph_classes/isomorph_classes_merged_Peptides_D2_fasta_min9AA_fast.RData")
 
 
 

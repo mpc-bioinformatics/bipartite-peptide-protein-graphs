@@ -9,18 +9,22 @@ library(xtable)
 D1_fasta_5 <- read.xlsx("data/D1/D1_fasta/table_subgraph_characteristics_D1_fasta_min5AA.xlsx")
 D1_fasta_6 <- read.xlsx("data/D1/D1_fasta/table_subgraph_characteristics_D1_fasta_min6AA.xlsx")
 D1_fasta_7 <- read.xlsx("data/D1/D1_fasta/table_subgraph_characteristics_D1_fasta_min7AA.xlsx")
+D1_fasta_9 <- read.xlsx("data/D1/D1_fasta/table_subgraph_characteristics_D1_fasta_min9AA.xlsx")
 
 isomorphlist_D1_5 <- get(load("data/D1/D1_fasta/isomorph_classes/isomorph_classes_merged_Peptides_D1_fasta_min5AA_fast.RData"))
 isomorphlist_D1_6 <- get(load("data/D1/D1_fasta/isomorph_classes/isomorph_classes_merged_Peptides_D1_fasta_min6AA_fast.RData"))
 isomorphlist_D1_7 <- get(load("data/D1/D1_fasta/isomorph_classes/isomorph_classes_merged_Peptides_D1_fasta_min7AA_fast.RData"))
+isomorphlist_D1_9 <- get(load("data/D1/D1_fasta/isomorph_classes/isomorph_classes_merged_Peptides_D1_fasta_min9AA_fast.RData"))
 
 D2_fasta_5 <- read.xlsx("data/D2/D2_fasta/table_subgraph_characteristics_D2_fasta_min5AA.xlsx")
 D2_fasta_6 <- read.xlsx("data/D2/D2_fasta/table_subgraph_characteristics_D2_fasta_min6AA.xlsx")
 D2_fasta_7 <- read.xlsx("data/D2/D2_fasta/table_subgraph_characteristics_D2_fasta_min7AA.xlsx")
+D2_fasta_9 <- read.xlsx("data/D2/D2_fasta/table_subgraph_characteristics_D2_fasta_min9AA.xlsx")
 
 isomorphlist_D2_5 <- get(load("data/D2/D2_fasta/isomorph_classes/isomorph_classes_merged_Peptides_D2_fasta_min5AA_fast.RData"))
 isomorphlist_D2_6 <- get(load("data/D2/D2_fasta/isomorph_classes/isomorph_classes_merged_Peptides_D2_fasta_min6AA_fast.RData"))
 isomorphlist_D2_7 <- get(load("data/D2/D2_fasta/isomorph_classes/isomorph_classes_merged_Peptides_D2_fasta_min7AA_fast.RData"))
+isomorphlist_D2_9 <- get(load("data/D2/D2_fasta/isomorph_classes/isomorph_classes_merged_Peptides_D2_fasta_min9AA_fast.RData"))
 
 
 ################################################################################
@@ -65,8 +69,10 @@ table1_calculate_numbers <- function(D, isomorph) {
 ### compile table:
 
 
-RES <- mapply(table1_calculate_numbers, D = list(D1_fasta_5, D1_fasta_6, D1_fasta_7, D2_fasta_5, D2_fasta_6, D2_fasta_7), 
-       isomorph = list(isomorphlist_D1_5, isomorphlist_D1_6, isomorphlist_D1_7, isomorphlist_D2_5, isomorphlist_D2_6, isomorphlist_D2_7))
+RES <- mapply(table1_calculate_numbers, D = list(D1_fasta_5, D1_fasta_6, D1_fasta_7, D1_fasta_9, 
+                                                 D2_fasta_5, D2_fasta_6, D2_fasta_7, D2_fasta_9), 
+       isomorph = list(isomorphlist_D1_5, isomorphlist_D1_6, isomorphlist_D1_7, isomorphlist_D1_9,
+                       isomorphlist_D2_5, isomorphlist_D2_6, isomorphlist_D2_7, isomorphlist_D2_9)) 
 rownames(RES) <- c("proteins", "protein nodes", "peptides", "peptide nodes", "edges", "graphs", 
                    "Graphs with 1 protein node",
                    "isomorphism classes",  "protein nodes", "peptide nodes", "edges", 
@@ -74,29 +80,3 @@ rownames(RES) <- c("proteins", "protein nodes", "peptides", "peptide nodes", "ed
 
 xtable(RES, digits = 0)
 
-
-# % latex table generated in R 4.0.1 by xtable 1.8-4 package
-# % Mon Mar 01 20:11:23 2021
-# \begin{table}[ht]
-# \centering
-# \begin{tabular}{rrrrrrr}
-# \hline
-# & 1 & 2 & 3 & 4 & 5 & 6 \\ 
-# \hline
-# proteins & 52760 & 52752 & 52741 & 6365 & 6364 & 6362 \\ 
-# protein.nodes & 52405 & 52388 & 52364 & 6292 & 6291 & 6290 \\ 
-# peptides & 2872496 & 2777410 & 2642464 & 752585 & 718527 & 680043 \\ 
-# peptide.nodes & 133137 & 103517 & 96241 & 13008 & 8178 & 7609 \\ 
-# edges & 444272 & 277656 & 241601 & 26917 & 15108 & 13730 \\ 
-# graphs & 2916 & 10356 & 15402 & 1649 & 4908 & 5471 \\ 
-# Graphs.with.1.protein.node & 2004 & 4809 & 6355 & 1499 & 4276 & 5023 \\ 
-# isomorphism.classes & 206 & 1474 & 2583 & 19 & 66 & 43 \\ 
-# protein.nodes.1 & 47525 & 25006 & 1632 & 4433 & 117 & 69 \\ 
-# peptide.nodes.1 & 126315 & 57763 & 3971 & 10941 & 358 & 264 \\ 
-# edges.1 & 433174 & 185147 & 14093 & 24540 & 1296 & 3329 \\ 
-# protein.nodes.2 & 26 & 91 & 1104 & 21 & 70 & 52 \\ 
-# peptide.nodes.2 & 75 & 177 & 2940 & 37 & 267 & 203 \\ 
-# edges.2 & 288 & 486 & 10541 & 131 & 3359 & 743 \\ 
-# \hline
-# \end{tabular}
-# \end{table}
