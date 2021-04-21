@@ -30,7 +30,7 @@ generate_submatrices <- function(M) {
   require(igraph)
   require(pbapply)
   
-  G <- igraoh::graph_from_incidence_matrix(matrix_01)
+  G <- igraph::graph_from_incidence_matrix(matrix_01)
   Subgraphs <- igraph::decompose(G)
   Submatrix <- pbapply::pblapply(Subgraphs, as_incidence_matrix)
   return(list(Submatrix = Submatrix, Subgraphs = Subgraphs))
