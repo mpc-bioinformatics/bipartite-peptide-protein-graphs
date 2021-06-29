@@ -27,28 +27,28 @@ D2_long <- reshape2::melt(D2, id.vars = 1)
 
 vars <- levels(D1_long$variable)
 D_complete <- rbind(D1_fasta_long, D1_long, D2_fasta_long, D2_long)
-D_complete$dataset <- rep(c("D1_fasta", "D1_quant", "D2_fasta", "D2_quant"), 
+D_complete$dataset <- rep(c("D1_fasta", "D1_quant", "D2_fasta", "D2_quant"),
                           times = c(nrow(D1_fasta_long), nrow(D1_long), nrow(D2_fasta_long), nrow(D2_long)))
 D_complete$dataset <- factor(D_complete$dataset, levels = c("D1_fasta", "D1_quant", "D2_fasta", "D2_quant"))
 
 ### Filter for relevant variables
-D_complete2 <- D_complete[D_complete$variable %in% c("Nr_prot_node", "Nr_pep_node", "Nr_pep_node_unique", 
+D_complete2 <- D_complete[D_complete$variable %in% c("Nr_prot_node", "Nr_pep_node", "Nr_pep_node_unique",
                                                      "Nr_pep_node_shared"), ]
 
 outlier_limit <- 10
 D_long_tmp2 <- dplyr::mutate(D_complete2, value = ifelse(value > outlier_limit, outlier_limit, value))
-D_long_tmp3 <- D_long_tmp2 %>% 
-  dplyr::group_by(dataset, value, variable) %>% 
-  dplyr::summarise(n=n()) %>% 
-  dplyr::group_by(dataset, variable) %>% 
+D_long_tmp3 <- D_long_tmp2 %>%
+  dplyr::group_by(dataset, value, variable) %>%
+  dplyr::summarise(n=n()) %>%
+  dplyr::group_by(dataset, variable) %>%
   dplyr::mutate(perc=n/sum(n))
 
 variable.labs <- c("Protein\n nodes", "Peptide\n nodes", "Unique\n peptide\n nodes", "Shared\n peptide\n nodes")
 names(variable.labs) <- levels(droplevels(D_long_tmp3$variable))
 
 pl <- ggplot(D_long_tmp3) +
-  geom_bar(aes(value, y = perc), fill = "grey", stat = "identity", col = "black", size=0.3) + 
-  theme_bw(base_size = 10) + 
+  geom_bar(aes(value, y = perc), fill = "grey", stat = "identity", col = "black", size=0.3) +
+  theme_bw(base_size = 10) +
   ylab("Relative frequency") + xlab("Value") +
   facet_grid(variable ~ dataset, labeller = labeller(variable = variable.labs)) +
   ylim(0, 1) +
@@ -56,8 +56,28 @@ pl <- ggplot(D_long_tmp3) +
   theme(axis.text.x = element_text(hjust = c(rep(0.5, 10),0.3)))
 pl
 
-ggsave("Paper/Paper 1/figures/Fig2_350dpi.jpg", plot = pl, width = 17.8, height = 8.2, device = "jpeg", dpi = 350, units = "cm")
-ggsave("Paper/Paper 1/figures/Fig2_350dpi.eps", plot = pl, width = 17.8, height = 8.2, device = "eps", dpi = 350, units = "cm")
-ggsave("Paper/Paper 1/figures/Fig2_1200dpi.tif", plot = pl, width = 17.8, height = 8.2, device = "tiff", dpi = 1200, units = "cm")
-ggsave("Paper/Paper 1/figures/Fig2_350dpi.tif", plot = pl, width = 17.8, height = 8.2, device = "tiff", dpi = 350, units = "cm")
+ggsave("Paper/Paper 1/figures/Figure2.pdf", plot = pl, width = 17.0, height = 10, device = "pdf", units = "cm")
+ggsave("Paper/Paper 1/figures/Figure2.tif", plot = pl, width = 17.0, height = 10, device = "tiff", units = "cm", dpi = 350)
+ggsave("Paper/Paper 1/figures/Figure2.png", plot = pl, width = 17.0, height = 10, device = "png", units = "cm", dpi = 350)
 
+
+################################################################################
+################################################################################
+### Alternative Version andere Ausrichtung
+
+variable.labs2 <- c("Protein nodes", "Peptide nodes", "Unique peptide nodes", "Shared peptide nodes")
+names(variable.labs2) <- levels(droplevels(D_long_tmp3$variable))
+
+pl2 <- ggplot(D_long_tmp3) +
+  geom_bar(aes(x = value, y = perc), fill = "grey", stat = "identity", col = "black", size=0.3) +
+  theme_bw(base_size = 10) +
+  ylab("Relative frequency") + xlab("Number of nodes") +
+  facet_grid(dataset ~ variable, labeller = labeller(variable = variable.labs2)) +
+  ylim(0, 1) +
+  scale_x_continuous(breaks = 0:10, labels = c(0:9, "10+")) +
+  theme(axis.text.x = element_text(hjust = c(rep(0.5, 10),0.3)))
+pl2
+
+ggsave("Paper/Paper 1/figures/Figure2_alternative.pdf", plot = pl2, width = 17.0, height = 10, device = "pdf", units = "cm")
+ggsave("Paper/Paper 1/figures/Figure2_alternative.tif", plot = pl2, width = 17.0, height = 10, device = "tiff", units = "cm", dpi = 350)
+ggsave("Paper/Paper 1/figures/Figure2_alternative.png", plot = pl2, width = 17.0, height = 10, device = "png", units = "cm", dpi = 350)
