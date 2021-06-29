@@ -79,8 +79,6 @@ rownames(RES) <- c("proteins", "protein nodes", "peptides", "peptide nodes", "ed
 
 RES2 <- RES
 colnames(RES2) <- c("1_2", "1_3", "1_4", "1_5", "2_3", "2_4", "2_5", "3_4", "3_5", "4_5")
-write.xlsx(RES2, "data/D1/D1_quant/draft_Table3_Paper.xlsx", keepNA = TRUE, row.names = TRUE)
-
 
 RES3 <- cbind(round(rowMeans(RES), 0), matrixStats::rowMins(RES), matrixStats::rowMaxs(RES))
 colnames(RES3) <- c("mean", "min", "max")
@@ -184,15 +182,10 @@ colnames(RES2_2) <- c("1_2", "1_3", "1_4", "1_5", "1_6", "1_7", "1_8", "1_9",
                       "4_5", "4_6", "4_7", "4_8", "4_9",
                       "5_6", "5_7", "5_8", "5_9",
                       "6_7", "6_8", "6_9","7_8", "7_9", "8_9")
-write.xlsx(RES2_2, "data/D2/D2_quant/draft_Table3_Paper.xlsx", keepNA = TRUE, row.names = TRUE)
-
 
 
 RES3_2 <- cbind(round(rowMeans(RES_2), 0), matrixStats::rowMins(RES_2), matrixStats::rowMaxs(RES_2))
 colnames(RES3_2) <- c("mean", "min", "max")
-
-
-
 
 
 xtable(cbind(RES3, RES3_2), digits = 0)
