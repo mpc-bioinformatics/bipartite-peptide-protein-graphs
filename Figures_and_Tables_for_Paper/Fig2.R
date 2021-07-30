@@ -63,7 +63,7 @@ ggsave("Paper/Paper 1/figures/Figure2.png", plot = pl, width = 17.0, height = 10
 
 ################################################################################
 ################################################################################
-### Alternative Version andere Ausrichtung
+### alternative Version (transposed)
 
 variable.labs2 <- c("Protein nodes", "Peptide nodes", "Unique peptide nodes", "Shared peptide nodes")
 names(variable.labs2) <- levels(droplevels(D_long_tmp3$variable))
