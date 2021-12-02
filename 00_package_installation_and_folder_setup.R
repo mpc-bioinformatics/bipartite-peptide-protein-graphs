@@ -29,9 +29,21 @@ dir.create("data/D1/D1_fasta/isomorph_classes/", recursive = TRUE)
 dir.create("data/D1/D1_quant/preprocessed/", recursive = TRUE)
 dir.create("data/D1/D1_quant/isomorph_classes/", recursive = TRUE)
 
-dir.create("data/D2/D2_fasta/preprocessed/", recursive = TRUE)
-dir.create("data/D2/D2_fasta/isomorph_classes/", recursive = TRUE)
-dir.create("data/D2/D2_quant/preprocessed/", recursive = TRUE)
-dir.create("data/D2/D2_quant/isomorph_classes/", recursive = TRUE)
+dir.create("data/D2_without_isoforms/D2_fasta/preprocessed/", recursive = TRUE)
+dir.create("data/D2_without_isoforms/D2_fasta/isomorph_classes/", recursive = TRUE)
+dir.create("data/D2_without_isoforms/D2_quant/preprocessed/", recursive = TRUE)
+dir.create("data/D2_without_isoforms/D2_quant/isomorph_classes/", recursive = TRUE)
+
+dir.create("data/D3_without_isoforms/D3_fasta/preprocessed/", recursive = TRUE)
+dir.create("data/D3_without_isoforms/D3_fasta/isomorph_classes/", recursive = TRUE)
+dir.create("data/D3_without_isoforms/D3_quant/preprocessed/", recursive = TRUE)
+dir.create("data/D3_without_isoforms/D3_quant/isomorph_classes/", recursive = TRUE)
+
+dir.create("data/D3/D3_fasta/preprocessed/", recursive = TRUE)
+dir.create("data/D3/D3_fasta/isomorph_classes/", recursive = TRUE)
+dir.create("data/D3/D3_quant/preprocessed/", recursive = TRUE)
+dir.create("data/D3/D3_quant/isomorph_classes/", recursive = TRUE)
 
 dir.create("Paper/Paper 1/figures/supplement/", recursive = TRUE)
+
+
