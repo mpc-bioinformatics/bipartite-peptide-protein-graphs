@@ -79,8 +79,11 @@ calculate_subgraph_characteristics <- function(Submatrix_merged_Peptides, Submat
   return(Data)
 }
 
-#################################################################################
-#### D1_fasta ####
+
+################################################################################
+################################################################################
+################################################################################
+#### D1_fasta (without isoforms)
 
 Submatrix_merged_Peptides <- readRDS("data/D1/D1_fasta/preprocessed/Submatrix_merged_Peptides_D1_fasta_min5AA_fast.rds")
 Submatrices_full <- readRDS("data/D1/D1_fasta/preprocessed/Submatrix_D1_fasta_min5AA.rds")
@@ -102,33 +105,8 @@ Submatrices_full <- readRDS("data/D1/D1_fasta/preprocessed/Submatrix_D1_fasta_mi
 D <- calculate_subgraph_characteristics(Submatrix_merged_Peptides, Submatrices_full)
 write.xlsx(D, "data/D1/D1_fasta/table_subgraph_characteristics_D1_fasta_min9AA.xlsx", keepNa = TRUE)
 
-#################################################################################
-#### D2_fasta ####
-
-Submatrix_merged_Peptides <- readRDS("data/D2/D2_fasta/preprocessed/Submatrix_merged_Peptides_D2_fasta_min5AA_fast.rds")
-Submatrices_full <- readRDS("data/D2/D2_fasta/preprocessed/Submatrix_D2_fasta_min5AA.rds")
-D <- calculate_subgraph_characteristics(Submatrix_merged_Peptides, Submatrices_full)
-write.xlsx(D, "data/D2/D2_fasta/table_subgraph_characteristics_D2_fasta_min5AA.xlsx", keepNA = TRUE)
-
-Submatrix_merged_Peptides <- readRDS("data/D2/D2_fasta/preprocessed/Submatrix_merged_Peptides_D2_fasta_min6AA_fast.rds")
-Submatrices_full <- readRDS("data/D2/D2_fasta/preprocessed/Submatrix_D2_fasta_min6AA.rds")
-D <- calculate_subgraph_characteristics(Submatrix_merged_Peptides, Submatrices_full)
-write.xlsx(D, "data/D2/D2_fasta/table_subgraph_characteristics_D2_fasta_min6AA.xlsx", keepNA = TRUE)
-
-Submatrix_merged_Peptides <- readRDS("data/D2/D2_fasta/preprocessed/Submatrix_merged_Peptides_D2_fasta_min7AA_fast.rds")
-Submatrices_full <- readRDS("data/D2/D2_fasta/preprocessed/Submatrix_D2_fasta_min7AA.rds")
-D <- calculate_subgraph_characteristics(Submatrix_merged_Peptides, Submatrices_full)
-write.xlsx(D, "data/D2/D2_fasta/table_subgraph_characteristics_D2_fasta_min7AA.xlsx", keepNa = TRUE)
-
-Submatrix_merged_Peptides <- readRDS("data/D2/D2_fasta/preprocessed/Submatrix_merged_Peptides_D2_fasta_min9AA_fast.rds")
-Submatrices_full <- readRDS("data/D2/D2_fasta/preprocessed/Submatrix_D2_fasta_min9AA.rds")
-D <- calculate_subgraph_characteristics(Submatrix_merged_Peptides, Submatrices_full)
-write.xlsx(D, "data/D2/D2_fasta/table_subgraph_characteristics_D2_fasta_min9AA.xlsx", keepNa = TRUE)
-
-
-
 ################################################################################
-######## D1_quant
+######## D1_quant (without isoforms)
 
 load("data/D1/D1_quant/preprocessed/Submatrices.RData")
 load("data/D1/D1_quant/preprocessed/Submatrices_merged_Peptides.RData")
@@ -148,11 +126,38 @@ for (i in 1:4) {
 write.xlsx(D2, "data/D1/D1_quant/table_subgraph_characteristics_D1_quant.xlsx", keepNA = TRUE)
 
 
-################################################################################
-######## D2_quant
 
-load("data/D2/D2_quant/preprocessed/Submatrices.RData")
-load("data/D2/D2_quant/preprocessed/Submatrices_merged_Peptides.RData")
+################################################################################
+################################################################################
+################################################################################
+#### D2_fasta (without isoforms)
+
+Submatrix_merged_Peptides <- readRDS("data/D2_without_isoforms/D2_fasta/preprocessed/Submatrix_merged_Peptides_D2_fasta_min5AA_fast.rds")
+Submatrices_full <- readRDS("data/D2_without_isoforms/D2_fasta/preprocessed/Submatrix_D2_fasta_min5AA.rds")
+D <- calculate_subgraph_characteristics(Submatrix_merged_Peptides, Submatrices_full)
+write.xlsx(D, "data/D2_without_isoforms/D2_fasta/table_subgraph_characteristics_D2_fasta_min5AA.xlsx", keepNA = TRUE)
+
+Submatrix_merged_Peptides <- readRDS("data/D2_without_isoforms/D2_fasta/preprocessed/Submatrix_merged_Peptides_D2_fasta_min6AA_fast.rds")
+Submatrices_full <- readRDS("data/D2_without_isoforms/D2_fasta/preprocessed/Submatrix_D2_fasta_min6AA.rds")
+D <- calculate_subgraph_characteristics(Submatrix_merged_Peptides, Submatrices_full)
+write.xlsx(D, "data/D2_without_isoforms/D2_fasta/table_subgraph_characteristics_D2_fasta_min6AA.xlsx", keepNA = TRUE)
+
+Submatrix_merged_Peptides <- readRDS("data/D2_without_isoforms/D2_fasta/preprocessed/Submatrix_merged_Peptides_D2_fasta_min7AA_fast.rds")
+Submatrices_full <- readRDS("data/D2_without_isoforms/D2_fasta/preprocessed/Submatrix_D2_fasta_min7AA.rds")
+D <- calculate_subgraph_characteristics(Submatrix_merged_Peptides, Submatrices_full)
+write.xlsx(D, "data/D2_without_isoforms/D2_fasta/table_subgraph_characteristics_D2_fasta_min7AA.xlsx", keepNa = TRUE)
+
+Submatrix_merged_Peptides <- readRDS("data/D2_without_isoforms/D2_fasta/preprocessed/Submatrix_merged_Peptides_D2_fasta_min9AA_fast.rds")
+Submatrices_full <- readRDS("data/D2_without_isoforms/D2_fasta/preprocessed/Submatrix_D2_fasta_min9AA.rds")
+D <- calculate_subgraph_characteristics(Submatrix_merged_Peptides, Submatrices_full)
+write.xlsx(D, "data/D2_without_isoforms/D2_fasta/table_subgraph_characteristics_D2_fasta_min9AA.xlsx", keepNa = TRUE)
+
+
+################################################################################
+######## D2_quant (without isoforms)
+
+load("data/D2_without_isoforms/D2_quant/preprocessed/Submatrices.RData")
+load("data/D2_without_isoforms/D2_quant/preprocessed/Submatrices_merged_Peptides.RData")
 D2 <- NULL
 for (i in 1:8) {
   for (j in (i+1):9) {
@@ -166,8 +171,101 @@ for (i in 1:8) {
     D2 <- rbind(D2, D_tmp2)
   }
 }
-write.xlsx(D2, "data/D2/D2_quant/table_subgraph_characteristics_D2_quant.xlsx", keepNA = TRUE)
+write.xlsx(D2, "data/D2_without_isoforms/D2_quant/table_subgraph_characteristics_D2_quant.xlsx", keepNA = TRUE)
+
+
+################################################################################
+################################################################################
+################################################################################
+#### D3_fasta (without isoforms)
+
+Submatrix_merged_Peptides <- readRDS("data/D3_without_isoforms/D3_fasta/preprocessed/Submatrix_merged_Peptides_D3_without_isoforms_fasta_min5AA_fast.rds")
+Submatrices_full <- readRDS("data/D3_without_isoforms/D3_fasta/preprocessed/Submatrix_D3_without_isoforms_fasta_min5AA.rds")
+D <- calculate_subgraph_characteristics(Submatrix_merged_Peptides, Submatrices_full)
+write.xlsx(D, "data/D3_without_isoforms/D3_fasta/table_subgraph_characteristics_D3_without_isoforms_fasta_min5AA.xlsx", keepNA = TRUE, overwrite = TRUE)
+
+Submatrix_merged_Peptides <- readRDS("data/D3_without_isoforms/D3_fasta/preprocessed/Submatrix_merged_Peptides_D3_without_isoforms_fasta_min6AA_fast.rds")
+Submatrices_full <- readRDS("data/D3_without_isoforms/D3_fasta/preprocessed/Submatrix_D3_without_isoforms_fasta_min6AA.rds")
+D <- calculate_subgraph_characteristics(Submatrix_merged_Peptides, Submatrices_full)
+write.xlsx(D, "data/D3_without_isoforms/D3_fasta/table_subgraph_characteristics_D3_without_isoforms_fasta_min6AA.xlsx", keepNA = TRUE, overwrite = TRUE)
+
+Submatrix_merged_Peptides <- readRDS("data/D3_without_isoforms/D3_fasta/preprocessed/Submatrix_merged_Peptides_D3_without_isoforms_fasta_min7AA_fast.rds")
+Submatrices_full <- readRDS("data/D3_without_isoforms/D3_fasta/preprocessed/Submatrix_D3_without_isoforms_fasta_min7AA.rds")
+D <- calculate_subgraph_characteristics(Submatrix_merged_Peptides, Submatrices_full)
+write.xlsx(D, "data/D3_without_isoforms/D3_fasta/table_subgraph_characteristics_D3_without_isoforms_fasta_min7AA.xlsx", keepNA = TRUE, overwrite = TRUE)
+
+Submatrix_merged_Peptides <- readRDS("data/D3_without_isoforms/D3_fasta/preprocessed/Submatrix_merged_Peptides_D3_without_isoforms_fasta_min9AA_fast.rds")
+Submatrices_full <- readRDS("data/D3_without_isoforms/D3_fasta/preprocessed/Submatrix_D3_without_isoforms_fasta_min9AA.rds")
+D <- calculate_subgraph_characteristics(Submatrix_merged_Peptides, Submatrices_full)
+write.xlsx(D, "data/D3_without_isoforms/D3_fasta/table_subgraph_characteristics_D3_without_isoforms_fasta_min9AA.xlsx", keepNA = TRUE, overwrite = TRUE)
 
 
 
+################################################################################
+######## D3_quant (without isoforms)
+
+load("data/D3_without_isoforms/D3_quant/preprocessed/Submatrices.RData")
+load("data/D3_without_isoforms/D3_quant/preprocessed/Submatrices_merged_Peptides.RData")
+D3 <- NULL
+for (i in 1) {
+  for (j in 2) {
+    comparison <- paste(i, j, sep = "_")
+
+    S_merged_peptides <- get(paste0("Submatrix_merged_Peptides_", i, "_", j))
+    S_full <- get(paste0("Submatrix_", i, "_", j))
+    D_tmp2 <- calculate_subgraph_characteristics(Submatrix_merged_Peptides = S_merged_peptides,
+                                                 Submatrices_full = S_full,
+                                                 fastalevel = FALSE, comparison = comparison)
+    D3 <- rbind(D3, D_tmp2)
+  }
+}
+write.xlsx(D3, "data/D3_without_isoforms/D3_quant/table_subgraph_characteristics_D3_quant.xlsx", keepNA = TRUE, overwrite = TRUE)
+
+
+################################################################################
+################################################################################
+################################################################################
+#### D3_fasta (with isoforms)
+
+Submatrix_merged_Peptides <- readRDS("data/D3/D3_fasta/preprocessed/Submatrix_merged_Peptides_D3_fasta_min5AA_fast.rds")
+Submatrices_full <- readRDS("data/D3/D3_fasta/preprocessed/Submatrix_D3_fasta_min5AA.rds")
+D <- calculate_subgraph_characteristics(Submatrix_merged_Peptides, Submatrices_full)
+write.xlsx(D, "data/D3/D3_fasta/table_subgraph_characteristics_D3_fasta_min5AA.xlsx", keepNA = TRUE, overwrite = TRUE)
+
+Submatrix_merged_Peptides <- readRDS("data/D3/D3_fasta/preprocessed/Submatrix_merged_Peptides_D3_fasta_min6AA_fast.rds")
+Submatrices_full <- readRDS("data/D3/D3_fasta/preprocessed/Submatrix_D3_fasta_min6AA.rds")
+D <- calculate_subgraph_characteristics(Submatrix_merged_Peptides, Submatrices_full)
+write.xlsx(D, "data/D3/D3_fasta/table_subgraph_characteristics_D3_fasta_min6AA.xlsx", keepNA = TRUE, overwrite = TRUE)
+
+Submatrix_merged_Peptides <- readRDS("data/D3/D3_fasta/preprocessed/Submatrix_merged_Peptides_D3_fasta_min7AA_fast.rds")
+Submatrices_full <- readRDS("data/D3/D3_fasta/preprocessed/Submatrix_D3_fasta_min7AA.rds")
+D <- calculate_subgraph_characteristics(Submatrix_merged_Peptides, Submatrices_full)
+write.xlsx(D, "data/D3/D3_fasta/table_subgraph_characteristics_D3_fasta_min7AA.xlsx", keepNA = TRUE, overwrite = TRUE)
+
+Submatrix_merged_Peptides <- readRDS("data/D3/D3_fasta/preprocessed/Submatrix_merged_Peptides_D3_fasta_min9AA_fast.rds")
+Submatrices_full <- readRDS("data/D3/D3_fasta/preprocessed/Submatrix_D3_fasta_min9AA.rds")
+D <- calculate_subgraph_characteristics(Submatrix_merged_Peptides, Submatrices_full)
+write.xlsx(D, "data/D3/D3_fasta/table_subgraph_characteristics_D3_fasta_min9AA.xlsx", keepNA = TRUE, overwrite = TRUE)
+
+
+
+################################################################################
+######## D3_quant (with isoforms)
+
+load("data/D3/D3_quant/preprocessed/Submatrices.RData")
+load("data/D3/D3_quant/preprocessed/Submatrices_merged_Peptides.RData")
+D3 <- NULL
+for (i in 1) {
+  for (j in 2) {
+    comparison <- paste(i, j, sep = "_")
+
+    S_merged_peptides <- get(paste0("Submatrix_merged_Peptides_", i, "_", j))
+    S_full <- get(paste0("Submatrix_", i, "_", j))
+    D_tmp2 <- calculate_subgraph_characteristics(Submatrix_merged_Peptides = S_merged_peptides,
+                                                 Submatrices_full = S_full,
+                                                 fastalevel = FALSE, comparison = comparison)
+    D3 <- rbind(D3, D_tmp2)
+  }
+}
+write.xlsx(D3, "data/D3/D3_quant/table_subgraph_characteristics_D3_quant.xlsx", keepNA = TRUE, overwrite = TRUE)
 
