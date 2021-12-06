@@ -13,23 +13,29 @@ library(openxlsx)
 
 D1_fasta <- read.xlsx("data/D1/D1_fasta/table_subgraph_characteristics_D1_fasta_min7AA.xlsx")
 D1 <- read.xlsx("data/D1/D1_quant/table_subgraph_characteristics_D1_quant.xlsx")
-D2_fasta <- read.xlsx("data/D2/D2_fasta/table_subgraph_characteristics_D2_fasta_min6AA.xlsx")
-D2 <- read.xlsx("data/D2/D2_quant/table_subgraph_characteristics_D2_quant.xlsx")
+D2_fasta <- read.xlsx("data/D2_without_isoforms/D2_fasta/table_subgraph_characteristics_D2_fasta_min6AA.xlsx")
+D2 <- read.xlsx("data/D2_without_isoforms/D2_quant/table_subgraph_characteristics_D2_quant.xlsx")
+D3_fasta <- read.xlsx("data/D3_without_isoforms/D3_fasta/table_subgraph_characteristics_D3_without_isoforms_fasta_min7AA.xlsx")
+D3 <- read.xlsx("data/D3_without_isoforms/D3_quant/table_subgraph_characteristics_D3_quant.xlsx")
+
 
 ### remove column containing the "comparison"
 D1 <- D1[,-1]
 D2 <- D2[,-1]
+D3 <- D3[,-1]
 
 D1_fasta_long <- reshape2::melt(D1_fasta, id.vars = 1)
 D1_long <- reshape2::melt(D1, id.vars = 1)
 D2_fasta_long <- reshape2::melt(D2_fasta, id.vars = 1)
 D2_long <- reshape2::melt(D2, id.vars = 1)
+D3_fasta_long <- reshape2::melt(D3_fasta, id.vars = 1)
+D3_long <- reshape2::melt(D3, id.vars = 1)
 
 vars <- levels(D1_long$variable)
-D_complete <- rbind(D1_fasta_long, D1_long, D2_fasta_long, D2_long)
-D_complete$dataset <- rep(c("D1_fasta", "D1_quant", "D2_fasta", "D2_quant"),
-                          times = c(nrow(D1_fasta_long), nrow(D1_long), nrow(D2_fasta_long), nrow(D2_long)))
-D_complete$dataset <- factor(D_complete$dataset, levels = c("D1_fasta", "D1_quant", "D2_fasta", "D2_quant"))
+D_complete <- rbind(D1_fasta_long, D1_long, D2_fasta_long, D2_long, D3_fasta_long, D3_long)
+D_complete$dataset <- rep(c("D1_fasta", "D1_quant", "D2_fasta", "D2_quant", "D3_fasta", "D3_quant"),
+                          times = c(nrow(D1_fasta_long), nrow(D1_long), nrow(D2_fasta_long), nrow(D2_long), nrow(D3_fasta_long), nrow(D3_long)))
+D_complete$dataset <- factor(D_complete$dataset, levels = c("D1_fasta", "D1_quant", "D2_fasta", "D2_quant", "D3_fasta", "D3_quant"))
 
 
 ################################################################################
@@ -38,7 +44,6 @@ base_size = 5
 xlab = "Data set"
 ylab = "Relative frequency"
 legend_titles = c("", "", "", "")
-# c(bottom, left, top, right)
 plot_margins_default = unit(c(5.5,5.5,5.5,5.5), "points")
 plot_margins = plot_margins_default
 legend.key.size = unit(0.3, "cm")
@@ -114,7 +119,7 @@ pl3 <- ggplot(D_complete2) +
         legend.key.size = legend.key.size, legend.margin=margin(t = -5)) +
   ylab(ylab) + xlab(xlab) +
   ggtitle("Peptide nodes") +
-  scale_fill_manual(values = c("unique" = "grey90", "shared" = "grey40"), name = legend_titles[[3]]) +
+ scale_fill_manual(values = c("unique" = "grey90", "shared" = "grey40"), name = legend_titles[[3]]) +
   theme(axis.text.x = element_text(angle = 25, vjust = 1, hjust=1), )
 pl3
 
@@ -165,14 +170,11 @@ pl4_aligned <- cowplot::ggdraw(pl_aligned[[4]])
 
 
 pl_panel <- ggpubr::ggarrange(pl1_aligned, pl2_aligned, pl3_aligned, pl4_aligned,
-                              common.legend = FALSE, legend = "bottom",
+                                  common.legend = FALSE, legend = "bottom",
                               labels = "AUTO", label.x = 0.05, label.y = 1,
-                              font.label = list(size = 10, color = "black", face = "bold", family = NULL))
-
-
+                                  font.label = list(size = 10, color = "black", face = "bold", family = NULL))
 
 cairo_pdf("Paper/Paper 1/figures/Figure3.pdf", height = 10/2.54, width = 8.5/2.54)
 print(pl_panel)
 dev.off()
-ggsave(pl = pl_panel,"Paper/Paper 1/figures/Figure3.tif",  device = "tiff", units = "cm", height = 10, width = 8.5, dpi = 350)
-ggsave(pl = pl_panel,"Paper/Paper 1/figures/Figure3.png",  device = "png", units = "cm", height = 10, width = 8.5, dpi = 350)
+
