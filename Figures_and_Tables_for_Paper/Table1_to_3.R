@@ -84,7 +84,7 @@ rownames(RES) <- c("proteins", "protein nodes", "peptides", "peptide nodes", "ed
 
 RES2 <- RES
 colnames(RES2) <- c("D1_fasta_5", "D1_fasta_6", "D1_fasta_7", "D1_fasta_9")
-write.xlsx(RES2, "data/D1/D1_fasta/Table1_Paper.xlsx", keepNA = TRUE,
+write.xlsx(RES2, "Paper/Paper 1/tables/Table1.xlsx", keepNA = TRUE,
            row.names = TRUE, overwrite = TRUE)
 
 xtable(RES, digits = 0)
@@ -127,7 +127,7 @@ rownames(RES) <- c("proteins", "protein nodes", "peptides", "peptide nodes", "ed
 
 RES2 <- RES
 colnames(RES2) <- c("D2_fasta_5", "D2_fasta_6", "D2_fasta_7", "D2_fasta_9")
-write.xlsx(RES2, "data/D2_without_isoforms/D2_fasta/Table2_Paper.xlsx", keepNA = TRUE, row.names = TRUE, overwrite = TRUE)
+write.xlsx(RES2, "Paper/Paper 1/tables/Table2.xlsx", keepNA = TRUE, row.names = TRUE, overwrite = TRUE)
 
 xtable(RES, digits = 0)
 # % latex table generated in R 4.1.2 by xtable 1.8-4 package
@@ -169,7 +169,7 @@ rownames(RES) <- c("proteins", "protein nodes", "peptides", "peptide nodes", "ed
 
 RES2 <- RES
 colnames(RES2) <- c("D3_fasta_5", "D3_fasta_6", "D3_fasta_7", "D3_fasta_9")
-write.xlsx(as.data.frame(RES2), "data/D3_without_isoforms/D3_fasta/Table3_Paper.xlsx",
+write.xlsx(as.data.frame(RES2), "Paper/Paper 1/tables/Table3.xlsx",
            row.names = TRUE, overwrite = TRUE)
 
 xtable(RES, digits = 0)

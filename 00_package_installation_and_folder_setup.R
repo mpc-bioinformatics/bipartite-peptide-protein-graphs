@@ -45,5 +45,5 @@ dir.create("data/D3/D3_quant/preprocessed/", recursive = TRUE)
 dir.create("data/D3/D3_quant/isomorph_classes/", recursive = TRUE)
 
 dir.create("Paper/Paper 1/figures/supplement/", recursive = TRUE)
-
+dir.create("Paper/Paper 1/tables/supplement/", recursive = TRUE)
 
