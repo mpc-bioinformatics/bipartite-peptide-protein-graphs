@@ -61,6 +61,9 @@ proteins <- assign_protein_accessions(peptides, fasta_vec)
 
 
 D <- cbind(peptide = peptides, protein = proteins, LFQ_values)
+write.table(D, "data/D3_without_isoforms/D3_quant/preprocessed/preprocessed_peptide_data_D3_without_isoforms_allpeptides.txt",
+            row.names = FALSE, sep = "\t")
+
 D <- D[nchar(D$peptide) >= 7 & nchar(D$peptide) <= 50, ]
 write.table(D, "data/D3_without_isoforms/D3_quant/preprocessed_peptide_data_D3_without_isoforms.txt",
             sep = "\t", row.names = FALSE)
@@ -69,8 +72,18 @@ write.table(D, "data/D3_without_isoforms/D3_quant/preprocessed_peptide_data_D3_w
 ################################################################################
 #### Step 4) calculate 0/1 biadjacency matrix matrix ####
 
+
+### 0/1 matrix from all peptides
+DATA <- read.table(file = "data/D3_without_isoforms/D3_quant/preprocessed/preprocessed_peptide_data_D3_without_isoforms_allpeptides.txt",
+                   sep = "\t", header = TRUE)
+DATA <- DATA[DATA$protein != "", ]
+matrix_01 <- generate_01_matrix(DATA$peptide, DATA$protein)
+saveRDS(matrix_01, "data/D3_without_isoforms/D3_quant/preprocessed/01Matrix_all_valid_peptides.rds")
+
+
+#### 0/1 matrix only from peptides with length between 7 and 50
 DATA <- read.table(file = "data/D3_without_isoforms/D3_quant/preprocessed_peptide_data_D3_without_isoforms.txt", sep = "\t", header = TRUE)
-matrix_01 <- generate_01_matrix(DATA$peptide, DATA$protein)  ### approx. 1 minute
+matrix_01 <- generate_01_matrix(DATA$peptide, DATA$protein)
 saveRDS(matrix_01, "data/D3_without_isoforms/D3_quant/preprocessed/01Matrix_without_isoforms.rds")
 
 
