@@ -28,10 +28,10 @@ D3_fasta_5 <- read.xlsx("data/D3_without_isoforms/D3_fasta/table_subgraph_charac
 D3_fasta_6 <- read.xlsx("data/D3_without_isoforms/D3_fasta/table_subgraph_characteristics_D3_without_isoforms_fasta_min6AA.xlsx")
 D3_fasta_7 <- read.xlsx("data/D3_without_isoforms/D3_fasta/table_subgraph_characteristics_D3_without_isoforms_fasta_min7AA.xlsx")
 D3_fasta_9 <- read.xlsx("data/D3_without_isoforms/D3_fasta/table_subgraph_characteristics_D3_without_isoforms_fasta_min9AA.xlsx")
-isomorphlist_D3_5 <- get(load("data/D3/D3_fasta/isomorph_classes/isomorph_classes_merged_Peptides_D3_fasta_min5AA_fast.RData"))
-isomorphlist_D3_6 <- get(load("data/D3/D3_fasta/isomorph_classes/isomorph_classes_merged_Peptides_D3_fasta_min6AA_fast.RData"))
-isomorphlist_D3_7 <- get(load("data/D3/D3_fasta/isomorph_classes/isomorph_classes_merged_Peptides_D3_fasta_min7AA_fast.RData"))
-isomorphlist_D3_9 <- get(load("data/D3/D3_fasta/isomorph_classes/isomorph_classes_merged_Peptides_D3_fasta_min9AA_fast.RData"))
+isomorphlist_D3_5 <- get(load("data/D3_without_isoforms/D3_fasta/isomorph_classes/isomorph_classes_merged_Peptides_D3_without_isoforms_fasta_min5AA_fast.RData"))
+isomorphlist_D3_6 <- get(load("data/D3_without_isoforms/D3_fasta/isomorph_classes/isomorph_classes_merged_Peptides_D3_without_isoforms_fasta_min6AA_fast.RData"))
+isomorphlist_D3_7 <- get(load("data/D3_without_isoforms/D3_fasta/isomorph_classes/isomorph_classes_merged_Peptides_D3_without_isoforms_fasta_min7AA_fast.RData"))
+isomorphlist_D3_9 <- get(load("data/D3_without_isoforms/D3_fasta/isomorph_classes/isomorph_classes_merged_Peptides_D3_without_isoforms_fasta_min9AA_fast.RData"))
 
 
 ################################################################################
@@ -174,7 +174,7 @@ write.xlsx(as.data.frame(RES2), "data/D3_without_isoforms/D3_fasta/Table3_Paper.
 
 xtable(RES, digits = 0)
 # % latex table generated in R 4.1.2 by xtable 1.8-4 package
-# % Thu Dec 02 14:48:39 2021
+# % Fri Dec 10 14:08:35 2021
 # \begin{table}[ht]
 # \centering
 # \begin{tabular}{rrrrr}
@@ -188,7 +188,7 @@ xtable(RES, digits = 0)
 # edges & 699493 & 480830 & 431391 & 401884 \\
 # graphs & 4576 & 14177 & 20270 & 22327 \\
 # Graphs.with.1.protein.node & 3722 & 8178 & 10129 & 11088 \\
-# isomorphism.classes & 311 & 3072 & 5656 & 6236 \\
+# isomorphism.classes & 253 & 2304 & 4197 & 4521 \\
 # protein.nodes.1 & 74157 & 40266 & 6472 & 2203 \\
 # peptide.nodes.1 & 183383 & 89697 & 14993 & 5106 \\
 # edges.1 & 685438 & 315173 & 56950 & 17897 \\
@@ -198,4 +198,3 @@ xtable(RES, digits = 0)
 # \hline
 # \end{tabular}
 # \end{table}
-
