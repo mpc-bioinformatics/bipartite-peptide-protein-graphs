@@ -2,7 +2,7 @@ library(openxlsx)
 library(xtable)
 
 ################################################################################
-### Table 1, 2 and 3: impact of peptide length for the database level
+### Table 1, S2 and S3: impact of peptide length for the database level
 
 ################################################################################
 ### read in tables and data:
@@ -116,7 +116,7 @@ xtable(RES, digits = 0)
 
 
 #######################################################################################
-### Table 2: D2, min 5, 6, 7 and 9 AA
+### Table S2: D2, min 5, 6, 7 and 9 AA
 
 RES <- mapply(table1_calculate_numbers, D = list(D2_fasta_5, D2_fasta_6, D2_fasta_7, D2_fasta_9),
               isomorph = list(isomorphlist_D2_5, isomorphlist_D2_6, isomorphlist_D2_7, isomorphlist_D2_9))
@@ -158,7 +158,7 @@ xtable(RES, digits = 0)
 
 
 ####################################################################################
-#### Table 3: D3, min 5, 6, 7 and 9 AA
+#### Table S3: D3, min 5, 6, 7 and 9 AA
 
 RES <- mapply(table1_calculate_numbers, D = list(D3_fasta_5, D3_fasta_6, D3_fasta_7, D3_fasta_9),
               isomorph = list(isomorphlist_D3_5, isomorphlist_D3_6, isomorphlist_D3_7, isomorphlist_D3_9))
@@ -174,7 +174,7 @@ write.xlsx(as.data.frame(RES2), "Paper/Paper 1/tables/Table3.xlsx",
 
 xtable(RES, digits = 0)
 # % latex table generated in R 4.1.2 by xtable 1.8-4 package
-# % Mon Dec 20 13:46:32 2021
+# % Mon Dec 20 14:28:33 2021
 # \begin{table}[ht]
 # \centering
 # \begin{tabular}{rrrrr}
@@ -188,7 +188,7 @@ xtable(RES, digits = 0)
 # edges & 699493 & 480830 & 431391 & 401884 \\
 # graphs & 4576 & 14177 & 20270 & 22327 \\
 # Graphs.with.1.protein.node & 3722 & 8178 & 10129 & 11088 \\
-# isomorphism.classes & 253 & 2305 & 2305 & 4522 \\
+# isomorphism.classes & 253 & 2305 & 4198 & 4522 \\
 # protein.nodes.1 & 74157 & 40266 & 6472 & 2203 \\
 # peptide.nodes.1 & 183383 & 89697 & 14993 & 5106 \\
 # edges.1 & 685438 & 315173 & 56950 & 17897 \\
