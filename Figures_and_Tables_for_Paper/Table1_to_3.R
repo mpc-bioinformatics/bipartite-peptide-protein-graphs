@@ -174,7 +174,7 @@ write.xlsx(as.data.frame(RES2), "Paper/Paper 1/tables/Table3.xlsx",
 
 xtable(RES, digits = 0)
 # % latex table generated in R 4.1.2 by xtable 1.8-4 package
-# % Fri Dec 10 14:08:35 2021
+# % Mon Dec 20 13:46:32 2021
 # \begin{table}[ht]
 # \centering
 # \begin{tabular}{rrrrr}
@@ -188,7 +188,7 @@ xtable(RES, digits = 0)
 # edges & 699493 & 480830 & 431391 & 401884 \\
 # graphs & 4576 & 14177 & 20270 & 22327 \\
 # Graphs.with.1.protein.node & 3722 & 8178 & 10129 & 11088 \\
-# isomorphism.classes & 253 & 2304 & 4197 & 4521 \\
+# isomorphism.classes & 253 & 2305 & 2305 & 4522 \\
 # protein.nodes.1 & 74157 & 40266 & 6472 & 2203 \\
 # peptide.nodes.1 & 183383 & 89697 & 14993 & 5106 \\
 # edges.1 & 685438 & 315173 & 56950 & 17897 \\
