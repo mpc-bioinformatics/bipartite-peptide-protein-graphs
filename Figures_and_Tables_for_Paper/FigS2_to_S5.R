@@ -15,7 +15,7 @@ png(paste0(path, "FigS2a_600dpi.png"), height = 27, width = 10,
     res = 600, units = "cm")
 graphics::layout(matrix(c(1:11,11), 6, 2, byrow = TRUE),
        widths=c(1,1), heights=c(1,1,1,1,1,0.7))
-par(mai = c(0, 0.5, 0.5, 0), oma = c(0,0,0,0))
+par(mai = c(0.1, 0.5, 0.4, 0), oma = c(0,0,0,0))
 plotIsomorphList(isomorph_list = isomorph$isomorph_list, Graphs = isomorph$Graphs,
                  path = path, pdf = FALSE, save = FALSE, cex.title = 1.2,
                  legend = FALSE, vertex.size = 35, vertex.label.cex = 1.5,
@@ -40,7 +40,7 @@ png(paste0(path, "FigS2b_600dpi.png"), height = 27, width = 10,
     res = 600, units = "cm")
 graphics::layout(matrix(c(1:11,11), 6, 2, byrow = TRUE),
                  widths=c(1,1), heights=c(1,1,1,1,1,0.7))
-par(mai = c(0, 0.5, 0.5, 0), oma = c(0,0,0,0))
+par(mai = c(0.1, 0.5, 0.4, 0), oma = c(0,0,0,0))
 plotIsomorphList(isomorph_list = isomorph_all_merged_Peptides$isomorph_list, Graphs = isomorph_all_merged_Peptides$Graphs,
                  path = path, pdf = FALSE, save = FALSE, cex.title = 1.2,
                  legend = FALSE, vertex.size = 35, vertex.label.cex = 1.5,
@@ -65,7 +65,7 @@ png(paste0(path, "FigS3a_600dpi.png"), height = 27, width = 10,
     res = 600, units = "cm")
 graphics::layout(matrix(c(1:11,11), 6, 2, byrow = TRUE),
                  widths=c(1,1), heights=c(1,1,1,1,1,0.7))
-par(mai = c(0, 0.5, 0.5, 0), oma = c(0,0,0,0))
+par(mai = c(0.1, 0.5, 0.4, 0), oma = c(0,0,0,0))
 plotIsomorphList(isomorph_list = isomorph$isomorph_list, Graphs = isomorph$Graphs,
                  path = path, pdf = FALSE, save = FALSE, cex.title = 1.2,
                  legend = FALSE, vertex.size = 35, vertex.label.cex = 1.5,
@@ -92,7 +92,7 @@ png(paste0(path, "FigS3b_600dpi.png"), height = 27, width = 10,
     res = 600, units = "cm")
 graphics::layout(matrix(c(1:11,11), 6, 2, byrow = TRUE),
                  widths=c(1,1), heights=c(1,1,1,1,1,0.7))
-par(mai = c(0, 0.5, 0.5, 0), oma = c(0,0,0,0))
+par(mai = c(0.1, 0.5, 0.4, 0), oma = c(0,0,0,0))
 plotIsomorphList(isomorph_list = isomorph_all_merged_Peptides$isomorph_list, Graphs = isomorph_all_merged_Peptides$Graphs,
                  path = path, pdf = FALSE, save = FALSE, cex.title = 1.2,
                  legend = FALSE, vertex.size = 35, vertex.label.cex = 1.5,
@@ -117,7 +117,7 @@ png(paste0(path, "FigS4a_600dpi.png"), height = 27, width = 10,
     res = 600, units = "cm")
 graphics::layout(matrix(c(1:11,11), 6, 2, byrow = TRUE),
                  widths=c(1,1), heights=c(1,1,1,1,1,0.7))
-par(mai = c(0, 0.5, 0.5, 0), oma = c(0,0,0,0))
+par(mai = c(0.1, 0.5, 0.4, 0), oma = c(0,0,0,0))
 plotIsomorphList(isomorph_list = isomorph$isomorph_list, Graphs = isomorph$Graphs,
                  path = path, pdf = FALSE, save = FALSE, cex.title = 1.2,
                  legend = FALSE, vertex.size = 35, vertex.label.cex = 1.5,
@@ -144,7 +144,7 @@ png(paste0(path, "FigS4b_600dpi.png"), height = 27, width = 10,
     res = 600, units = "cm")
 graphics::layout(matrix(c(1:11,11), 6, 2, byrow = TRUE),
                  widths=c(1,1), heights=c(1,1,1,1,1,0.7))
-par(mai = c(0, 0.5, 0.5, 0), oma = c(0,0,0,0))
+par(mai = c(0.1, 0.5, 0.4, 0), oma = c(0,0,0,0))
 plotIsomorphList(isomorph_list = isomorph_all_merged_Peptides$isomorph_list, Graphs = isomorph_all_merged_Peptides$Graphs,
                  path = path, pdf = FALSE, save = FALSE, cex.title = 1.2,
                  legend = FALSE, vertex.size = 35, vertex.label.cex = 1.5,
@@ -169,7 +169,7 @@ png(paste0(path, "FigS5a_600dpi.png"), height = 27, width = 10,
     res = 600, units = "cm")
 graphics::layout(matrix(c(1:11,11), 6, 2, byrow = TRUE),
                  widths=c(1,1), heights=c(1,1,1,1,1,0.7))
-par(mai = c(0, 0.5, 0.5, 0), oma = c(0,0,0,0))
+par(mai = c(0.1, 0.5, 0.4, 0), oma = c(0,0,0,0))
 plotIsomorphList(isomorph_list = isomorph$isomorph_list, Graphs = isomorph$Graphs,
                  path = path, pdf = FALSE, save = FALSE, cex.title = 1.2,
                  legend = FALSE, vertex.size = 35, vertex.label.cex = 1.5,
@@ -195,7 +195,7 @@ png(paste0(path, "FigS5b_600dpi.png"), height = 27, width = 10,
     res = 600, units = "cm")
 graphics::layout(matrix(c(1:11,11), 6, 2, byrow = TRUE),
                  widths=c(1,1), heights=c(1,1,1,1,1,0.7))
-par(mai = c(0, 0.5, 0.5, 0), oma = c(0,0,0,0))
+par(mai = c(0.1, 0.5, 0.4, 0), oma = c(0,0,0,0))
 plotIsomorphList(isomorph_list = isomorph_all_merged_Peptides$isomorph_list, Graphs = isomorph_all_merged_Peptides$Graphs,
                  path = path, pdf = FALSE, save = FALSE, cex.title = 1.2,
                  legend = FALSE, vertex.size = 35, vertex.label.cex = 1.5,

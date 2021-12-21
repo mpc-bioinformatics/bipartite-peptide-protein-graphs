@@ -181,8 +181,9 @@ plotIsomorphList <- function(isomorph_list, Graphs, path, title = TRUE, pdf = TR
     G <- set_vertex_attr(G, name = "name", value = c(1:sum(!types), LETTERS[1:sum(types)]))
 
     plotBipartiteGraph(G, vertex.label.dist = 0, ...)
-    if(title & title_format == "times+percent") title(paste0(le_iso[i], " times (", formatC(percentages[i], digits = 2, format = "f"), "%)"), cex.main = cex.title)
-    if(title & title_format == "percent") title(paste0(formatC(percentages[i], digits = 2, format = "f"), "%"), cex.main = cex.title)
+    if(title & title_format == "times+percent") title(paste0(le_iso[i], " times (",
+                                                             formatC(percentages[i], digits = 2, format = "f"), "%)"), cex.main = cex.title, line = 0.5)
+    if(title & title_format == "percent") title(paste0(formatC(percentages[i], digits = 2, format = "f"), "%"), cex.main = cex.title, line = 0.5)
     if(!pdf & save) dev.off()
     j <- j + 1
   }
