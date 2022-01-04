@@ -20,6 +20,6 @@ of the above mentioned manuscript.
 
 The data underlying this analysis are available in the ProteomXChange Consortium 
 at  http://proteomecentral.proteomexchange.org via the PRIDE partner repository, 
-and can be accessed with the dataset identifiers PXD024684 and PXD024305.
+and can be accessed with the dataset identifiers PXD024684 and PXD030577 and PXD030603.
 
 
