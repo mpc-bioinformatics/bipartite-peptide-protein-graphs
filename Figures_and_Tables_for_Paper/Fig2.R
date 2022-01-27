@@ -65,6 +65,6 @@ pl2 <- ggplot(D_long_tmp3) +
   theme(axis.text.x = element_text(hjust = c(rep(0.5, 10),0.3)))
 pl2
 
-ggsave("Paper/Paper 1/figures/Figure2_alternative.pdf", plot = pl2, width = 17.0, height = 15, device = "pdf", units = "cm")
-ggsave("Paper/Paper 1/figures/Figure2_alternative.tif", plot = pl2, width = 17.0, height = 15, device = "tiff", units = "cm", dpi = 350)
-ggsave("Paper/Paper 1/figures/Figure2_alternative.png", plot = pl2, width = 17.0, height = 15, device = "png", units = "cm", dpi = 350)
+ggsave("Paper/Paper 1/figures/Figure2.pdf", plot = pl2, width = 17.0, height = 15, device = "pdf", units = "cm")
+ggsave("Paper/Paper 1/figures/Figure2.tif", plot = pl2, width = 17.0, height = 15, device = "tiff", units = "cm", dpi = 350)
+ggsave("Paper/Paper 1/figures/Figure2.png", plot = pl2, width = 17.0, height = 15, device = "png", units = "cm", dpi = 350)
