@@ -51,7 +51,7 @@ table1_calculate_numbers <- function(D, isomorph) {
 
 
 ################################################################################
-### Table S4: Comparison of D3 and D3_iso
+### Table S5: Comparison of D3 and D3_iso
 
 RES <- mapply(table1_calculate_numbers, D = list(D3_fasta, D3_iso_fasta, D3_quant, D3_iso_quant),
               isomorph = list(isomorphlist_D3_fasta, isomorphlist_D3_iso_fasta, isomorphlist_D3_quant, isomorphlist_D3_iso_quant))

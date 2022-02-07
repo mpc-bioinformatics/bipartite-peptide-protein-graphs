@@ -2,7 +2,7 @@ library(openxlsx)
 library(xtable)
 
 ################################################################################
-### Table 1, S2 and S3: impact of peptide length for the database level
+### Table 1, S3 and S4: impact of peptide length for the database level
 
 ################################################################################
 ### read in tables and data:
@@ -116,7 +116,7 @@ xtable(RES, digits = 0)
 
 
 #######################################################################################
-### Table S2: D2, min 5, 6, 7 and 9 AA
+### Table S3: D2, min 5, 6, 7 and 9 AA
 
 RES <- mapply(table1_calculate_numbers, D = list(D2_fasta_5, D2_fasta_6, D2_fasta_7, D2_fasta_9),
               isomorph = list(isomorphlist_D2_5, isomorphlist_D2_6, isomorphlist_D2_7, isomorphlist_D2_9))
@@ -158,7 +158,7 @@ xtable(RES, digits = 0)
 
 
 ####################################################################################
-#### Table S3: D3, min 5, 6, 7 and 9 AA
+#### Table S4: D3, min 5, 6, 7 and 9 AA
 
 RES <- mapply(table1_calculate_numbers, D = list(D3_fasta_5, D3_fasta_6, D3_fasta_7, D3_fasta_9),
               isomorph = list(isomorphlist_D3_5, isomorphlist_D3_6, isomorphlist_D3_7, isomorphlist_D3_9))

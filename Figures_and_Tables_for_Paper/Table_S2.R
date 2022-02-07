@@ -1,5 +1,5 @@
 
-### Numbers for Table S1
+### Numbers for Table S2
 
 
 D1 <- read.table("data/D1/D1_quant/preprocessed/FC_NA_mind2.txt", sep = "\t", header = TRUE)
