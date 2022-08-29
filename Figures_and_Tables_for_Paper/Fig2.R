@@ -1,70 +1,59 @@
-library(ggplot2)
-library(tidyverse)
-library(reshape2)
-library(openxlsx)
+source("helper_functions/isomorph_classes_calculation_and_plotting_functions.R")
+
+library(igraph)
 
 ################################################################################
-#### Fig 2) 4x4 panel of distribution of node types ####
+#### Fig 2) top10 isomorphism classes for data set D1 ####
 
 
-################################################################################
-# read in and preprocess data
-
-D1_fasta <- read.xlsx("data/D1/D1_fasta/table_subgraph_characteristics_D1_fasta_min7AA.xlsx")
-D1 <- read.xlsx("data/D1/D1_quant/table_subgraph_characteristics_D1_quant.xlsx")
-
-D2_fasta <- read.xlsx("data/D2_without_isoforms/D2_fasta/table_subgraph_characteristics_D2_fasta_min6AA.xlsx")
-D2 <- read.xlsx("data/D2_without_isoforms/D2_quant/table_subgraph_characteristics_D2_quant.xlsx")
-
-D3_fasta <- read.xlsx("data/D3_without_isoforms/D3_fasta/table_subgraph_characteristics_D3_without_isoforms_fasta_min7AA.xlsx")
-D3 <- read.xlsx("data/D3_without_isoforms/D3_quant/table_subgraph_characteristics_D3_quant.xlsx")
+load("data/D1/D1_fasta/isomorph_classes/isomorph_classes_merged_Peptides_D1_fasta_min7AA_fast.RData")
+load("data/D1/D1_quant/isomorph_classes/isomorph_classes_all_merged_Peptides.RData")
+path <- "Paper/Paper 1/figures/"
 
 
-## delete column with "comparison" for quantitative level
-D1 <- D1[,-1]
-D2 <- D2[,-1]
-D3 <- D3[,-1]
 
-D1_fasta_long <- reshape2::melt(D1_fasta, id.vars = 1)
-D1_long <- reshape2::melt(D1, id.vars = 1)
-D2_fasta_long <- reshape2::melt(D2_fasta, id.vars = 1)
-D2_long <- reshape2::melt(D2, id.vars = 1)
-D3_fasta_long <- reshape2::melt(D3_fasta, id.vars = 1)
-D3_long <- reshape2::melt(D3, id.vars = 1)
+layout_matrix <- cbind(matrix(c(1,1,2:12,12), 7, 2, byrow = TRUE), rep(13, 7), matrix(c(1, 1, 2:12,12)+13, 7, 2, byrow = TRUE))
 
-vars <- levels(D1_long$variable)
-D_complete <- rbind(D1_fasta_long, D1_long, D2_fasta_long, D2_long, D3_fasta_long, D3_long)
-D_complete$dataset <- rep(c("D1_fasta", "D1_quant", "D2_fasta", "D2_quant", "D3_fasta", "D3_quant"),
-                          times = c(nrow(D1_fasta_long), nrow(D1_long),
-                                    nrow(D2_fasta_long), nrow(D2_long),
-                                    nrow(D3_fasta_long), nrow(D3_long)))
-D_complete$dataset <- factor(D_complete$dataset, levels = c("D1_fasta", "D1_quant", "D2_fasta", "D2_quant", "D3_fasta", "D3_quant"))
+tiff(paste0(path, "Fig2.tif"), height = 27, width = 23,  # 27, 23
+     res = 300, units = "cm")
+graphics::layout(layout_matrix,
+                 widths=c(1,1,0.3, 1,1), heights=c(0.3,1,1,1,1,1,0.7))
+par(mai = c(0.1, 0.5, 0.4, 0), oma = c(0,0,0,0),  xpd=NA)
 
-### Filter for relevant variables
-D_complete2 <- D_complete[D_complete$variable %in% c("Nr_prot_node", "Nr_pep_node", "Nr_pep_node_unique",
-                                                     "Nr_pep_node_shared"), ]
 
-outlier_limit <- 10
-D_long_tmp2 <- dplyr::mutate(D_complete2, value = ifelse(value > outlier_limit, outlier_limit, value))
-D_long_tmp3 <- D_long_tmp2 %>%
-  dplyr::group_by(dataset, value, variable) %>%
-  dplyr::summarise(n=n()) %>%
-  dplyr::group_by(dataset, variable) %>%
-  dplyr::mutate(perc=n/sum(n))
+plot(1, 1, type='n',axes=FALSE, ann=FALSE, xpd=NA)
+text(x = 0.6, y = 1, labels = "A", cex = 3)
 
-variable.labs2 <- c("Protein nodes", "Peptide nodes", "Unique peptide nodes", "Shared peptide nodes")
-names(variable.labs2) <- levels(droplevels(D_long_tmp3$variable))
+plotIsomorphList(isomorph_list = isomorph$isomorph_list, Graphs = isomorph$Graphs,
+                 path = path, pdf = FALSE, save = FALSE, cex.title = 1.2,
+                 legend = FALSE, vertex.size = 35, vertex.label.cex = 1.5,
+                 edge.width = 3, vertex.size2 = 35, which_graphs = c(1:10),
+                 margin = 0, useCanonicalPermutation = TRUE, three_shapes = TRUE)
+vertex.color = c("mediumseagreen", "cadetblue2", "coral1")
+plot(NULL, xaxt='n',yaxt='n',bty='n',ylab='',xlab='', xlim=c(0, 0.4), ylim=c(0, 0.1),
+     oma = c(0,0,0,0), mar = c(0,0,0,0))
+legend(0.2, 0.15, legend = c("protein", "shared peptide", "unique peptide"),
+       col = vertex.color, pch = c(19, 15, 18), cex = 2, pt.cex = c(2.2, 2.2, 2.4), bty = "n",
+       xjust = 0.5, yjust = 1)
 
-pl2 <- ggplot(D_long_tmp3) +
-  geom_bar(aes(x = value, y = perc), fill = "grey", stat = "identity", col = "black", size=0.3) +
-  theme_bw(base_size = 10) +
-  ylab("Relative frequency") + xlab("Number of nodes") +
-  facet_grid(dataset ~ variable, labeller = labeller(variable = variable.labs2)) +
-  ylim(0, 1) +
-  scale_x_continuous(breaks = 0:10, labels = c(0:9, "10+")) +
-  theme(axis.text.x = element_text(hjust = c(rep(0.5, 10),0.3)))
-pl2
+plot(1, 1, type='n',axes=FALSE, ann=FALSE)
+abline(v = 1)
 
-ggsave("Paper/Paper 1/figures/Figure2.pdf", plot = pl2, width = 17.0, height = 15, device = "pdf", units = "cm")
-ggsave("Paper/Paper 1/figures/Figure2.tif", plot = pl2, width = 17.0, height = 15, device = "tiff", units = "cm", dpi = 350)
-ggsave("Paper/Paper 1/figures/Figure2.png", plot = pl2, width = 17.0, height = 15, device = "png", units = "cm", dpi = 350)
+
+plot(1, 1, type='n',axes=FALSE, ann=FALSE, xpd=NA)
+text(x = 0.6, y = 1, labels = "B", cex = 3)
+
+plotIsomorphList(isomorph_list = isomorph_all_merged_Peptides$isomorph_list, Graphs = isomorph_all_merged_Peptides$Graphs,
+                 path = path, pdf = FALSE, save = FALSE, cex.title = 1.2,
+                 legend = FALSE, vertex.size = 35, vertex.label.cex = 1.5,
+                 edge.width = 3, vertex.size2 = 35, which_graphs = c(1:10),
+                 margin = 0, useCanonicalPermutation = TRUE, three_shapes = TRUE)
+vertex.color = c("mediumseagreen", "cadetblue2", "coral1")
+plot(NULL, xaxt='n',yaxt='n',bty='n',ylab='',xlab='', xlim=c(0, 0.4), ylim=c(0, 0.1),
+     oma = c(0,0,0,0), mar = c(0,0,0,0))
+legend(0.2, 0.15, legend = c("protein", "shared peptide", "unique peptide"),
+       col = vertex.color, pch = c(19, 15, 18), cex = 2, pt.cex = c(2.2, 2.2, 2.4), bty = "n",
+       xjust = 0.5, yjust = 1)
+
+dev.off()
+

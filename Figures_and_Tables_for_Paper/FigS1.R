@@ -4,7 +4,7 @@ library(ggpubr)
 source("helper_functions/duplicated_for_sparse_matrices.R")
 
 ################################################################################
-#### Fig S1 and S2) barplots peptide length vs. sharedness ####
+#### Fig S1) barplots peptide length vs. sharedness ####
 
 
 
@@ -23,19 +23,18 @@ D$status <- factor(D$status, levels = c("unique", "shared"))
 pl1 <- ggplot(D, aes(x = peptide_length, fill = status)) +
   geom_bar() + ggtitle("D1_fasta") + theme_bw() +
   scale_fill_manual(values = c("unique" = "grey90", "shared" = "grey40"), name = "") +
-  xlab("Peptide length") + ylab("Count") + xlim(4,51)
+  xlab("Peptide length") + ylab("Count") + xlim(4,51) + scale_y_continuous(labels = scales::comma)
 pl1
-ggsave("Paper/Paper 1/figures/Supplement/FigS1a.png", device = "png",
-       width = 10, height = 10, plot = pl1, dpi = 600)
+
 
 pl3 <- ggplot(D, aes(x = peptide_length, fill = status, y = (..count..)/sum(..count..))) +
-  geom_bar(position="fill") + ylab("Relative Frequency") + ggtitle("D1_fasta") +
+  geom_bar(position="fill") + ylab("Percentage") + ggtitle("D1_fasta") +
   theme_bw() +
   scale_fill_manual(values = c("unique" = "grey90", "shared" = "grey40"), name = "") +
-  xlab("Peptide length") + xlim(4,51)
+  xlab("Peptide length") + xlim(4,51)+
+  scale_y_continuous(labels = scales::percent)
 pl3_single <- pl3 + theme_bw(base_size = 25)
-ggsave("Paper/Paper 1/figures/Supplement/FigS1c.png",
-       device = "png", width = 10, height = 7, plot = pl3_single, dpi = 600)
+
 
 
 ################################################################################
@@ -63,28 +62,40 @@ pl2 <- ggplot(D, aes(x = peptide_length, fill = status)) +
   scale_fill_manual(values = c("unique" = "grey90", "shared" = "grey40"), name = "") +
   xlab("Peptide length") + ylab("Count") + xlim(4,51)
 pl2
-ggsave("Paper/Paper 1/figures/Supplement/FigS1b.png",
-       device = "png", width = 10, height = 10, plot = pl2, dpi = 600)
+
 
 
 pl4 <- ggplot(D, aes(x = peptide_length, fill = status, y = (..count..)/sum(..count..))) +
-  geom_bar(position="fill") + ylab("Relative Frequency") + ggtitle("D1_quant") + theme_bw() +
+  geom_bar(position="fill") + ylab("Percentage") + ggtitle("D1_quant") + theme_bw() +
   scale_fill_manual(values = c("unique" = "grey90", "shared" = "grey40"), name = "") +
-  xlab("Peptide length") + xlim(4,51)
+  xlab("Peptide length") + xlim(4,51)+
+  scale_y_continuous(labels = scales::percent)
 pl4
-ggsave("Paper/Paper 1/figures/Supplement/FigS1d.png",
-       device = "png", width = 10, height = 10, plot = pl4, dpi = 600)
+
 
 
 ################################################################################
 ### 2x2 Panel
 
-pl_panel <- ggpubr::ggarrange(pl1, pl2, pl3, pl4,
-                              common.legend = TRUE, legend = "bottom",
-                              labels = "AUTO")
+pl_aligned <- cowplot::align_plots(pl1, pl2, pl3, pl4, align = "hv")
+pl1_aligned <- cowplot::ggdraw(pl_aligned[[1]])
+pl2_aligned <- cowplot::ggdraw(pl_aligned[[2]])
+pl3_aligned <- cowplot::ggdraw(pl_aligned[[3]])
+pl4_aligned <- cowplot::ggdraw(pl_aligned[[4]])
+
+legend <- get_legend(pl1 + theme(legend.position = "bottom"))
+
+
+pl_panel <- plot_grid(pl1 + theme(legend.position = "none"),
+                      pl2 + theme(legend.position = "none"),
+                      pl3 + theme(legend.position = "none"),
+                      pl4 + theme(legend.position = "none"),
+                      align = "v", labels = c("A", "B", "C", "D"), nrow = 2)
 pl_panel
+
+plot_grid(pl_panel, legend, nrow = 2, rel_heights = c(10,1))
 
 
 ggsave(pl = pl_panel,"Paper/Paper 1/figures/Supplement/FigS1_600dpi.png",
-       device = "png", units = "cm", height = 12.65, width = 12.65, dpi = 600)
+       device = "png", units = "cm", height = 12.65, width = 15, dpi = 600)
 

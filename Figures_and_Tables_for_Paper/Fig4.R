@@ -33,7 +33,7 @@ D_complete$dataset <- factor(D_complete$dataset, levels = c("D3_fasta", "D3_iso_
 ### general plot settings
 base_size = 5
 xlab = "Data set"
-ylab = "Relative frequency"
+ylab = "Percentage"
 legend_titles = c("", "", "", "")
 plot_margins_default = unit(c(5.5,5.5,5.5,5.5), "points")
 plot_margins = plot_margins_default
@@ -59,23 +59,27 @@ levels(D_complete3$variable) <- c("only unique peptides", "unique and shared pep
 pl <- ggplot(D_complete3) +
   geom_bar(aes(x = dataset, y = perc, fill = variable), stat = "identity", position = "stack", colour = "black", size=0.3) + #
   theme_bw(base_size = base_size) +
-  theme(legend.position = "bottom", plot.margin = plot_margins,
+  theme(legend.position = "right", plot.margin = plot_margins,
         legend.key.size = legend.key.size, legend.margin=margin(t = -5),
         legend.box.margin=margin(0,0,0,0)) +
   ylab(ylab) + xlab(xlab) +
-  ggtitle("Protein nodes") +
+  ggtitle("Breakdown of protein nodes") +
   scale_fill_manual(values = c("only unique peptides" = "grey90",
                                "unique and shared peptides" = "grey65",
                                "only shared peptides" = "grey40"),
                     name = legend_titles[[4]]) +
   guides(fill=guide_legend(nrow=3,byrow=TRUE)) +
-  theme(axis.text.x = element_text(angle = 25, vjust = 1, hjust=1))
+  theme(axis.text.x = element_text(angle = 25, vjust = 1, hjust=1)) +
+  scale_y_continuous(labels = scales::percent)
 pl
 
 
-cairo_pdf("Paper/Paper 1/figures/Figure4.pdf", height = 5/2.54, width = 4.5/2.54)
+cairo_pdf("Paper/Paper 1/figures/Fig4.pdf", height = 5/2.54, width = 8.5/2.54)
 print(pl)
 dev.off()
+
+ggsave("Paper/Paper 1/figures/Fig4.tif", plot = pl, width = 8.5, height = 5, device = "tiff", units = "cm", dpi = 300)
+
 
 
 
