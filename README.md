@@ -10,8 +10,7 @@ in presence of shared peptides.
 
 This R code belongs to the following manuscript:
 
-Karin Schork, Michael Turewicz, Julian Uszkoreit, Jörg Rahnenführer, Martin Eisenacher\
-bioRxiv 2021.07.28.454128; doi: https://doi.org/10.1101/2021.07.28.454128 
+Schork K, Turewicz M, Uszkoreit J, Rahnenführer J, Eisenacher M (2022) Characterization of peptide-protein relationships in protein ambiguity groups via bipartite graphs. PLOS ONE 17(10): e0276401. https://doi.org/10.1371/journal.pone.0276401 
 
 The different R scripts have to be executed in the numbered order (00 to 05).
 
