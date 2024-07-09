@@ -21,4 +21,5 @@ The data underlying this analysis are available in the ProteomXChange Consortium
 at  http://proteomecentral.proteomexchange.org via the PRIDE partner repository, 
 and can be accessed with the dataset identifiers PXD024684 and PXD030577 and PXD030603.
 
-
+Currently, development is continued in the bppg package. The current development version can be found here:
+https://github.com/mpc-bioinformatics/bppg
